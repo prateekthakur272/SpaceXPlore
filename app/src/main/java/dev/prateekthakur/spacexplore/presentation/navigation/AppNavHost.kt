@@ -1,0 +1,23 @@
+package dev.prateekthakur.spacexplore.presentation.navigation
+
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import dev.prateekthakur.spacexplore.presentation.screen.capsule.CapsulesScreen
+import dev.prateekthakur.spacexplore.presentation.screen.capsule.CapsulesScreenViewModel
+
+@Composable
+fun AppNavHost(startDestination: AppRoute = AppRoute.Capsule) {
+
+    val navHostController = rememberNavController()
+
+    NavHost(navController = navHostController, startDestination = startDestination){
+        composable<AppRoute.Capsule> {
+            val capsuleScreenViewModel = hiltViewModel<CapsulesScreenViewModel>()
+            CapsulesScreen(capsuleScreenViewModel.state.collectAsState().value)
+        }
+    }
+}
