@@ -6,18 +6,27 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dev.prateekthakur.spacexplore.presentation.screen.about.AboutSpaceXScreen
+import dev.prateekthakur.spacexplore.presentation.screen.about.AboutSpaceXScreenViewModel
 import dev.prateekthakur.spacexplore.presentation.screen.capsule.CapsulesScreen
 import dev.prateekthakur.spacexplore.presentation.screen.capsule.CapsulesScreenViewModel
 
 @Composable
-fun AppNavHost(startDestination: AppRoute = AppRoute.Capsule) {
+fun AppNavHost(startDestination: AppRoute = AppRoute.AboutSpaceX) {
 
     val navHostController = rememberNavController()
 
     NavHost(navController = navHostController, startDestination = startDestination){
+
         composable<AppRoute.Capsule> {
             val capsuleScreenViewModel = hiltViewModel<CapsulesScreenViewModel>()
             CapsulesScreen(capsuleScreenViewModel.state.collectAsState().value)
         }
+
+        composable<AppRoute.AboutSpaceX> {
+            val aboutSpaceXScreenViewModel = hiltViewModel<AboutSpaceXScreenViewModel>()
+            AboutSpaceXScreen(aboutSpaceXScreenViewModel.info.collectAsState().value)
+        }
+
     }
 }

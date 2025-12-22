@@ -5,4 +5,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed class AppRoute {
     @Serializable data object Capsule : AppRoute()
+    @Serializable data object AboutSpaceX : AppRoute()
 }
