@@ -7,8 +7,10 @@ import dagger.hilt.components.SingletonComponent
 import dev.prateekthakur.spacexplore.data.api.SpaceXApi
 import dev.prateekthakur.spacexplore.data.repository.AboutSpaceXRepositoryImpl
 import dev.prateekthakur.spacexplore.data.repository.CapsuleRepositoryImpl
+import dev.prateekthakur.spacexplore.data.repository.CoreRepositoryImpl
 import dev.prateekthakur.spacexplore.domain.repository.AboutSpaceXRepository
 import dev.prateekthakur.spacexplore.domain.repository.CapsuleRepository
+import dev.prateekthakur.spacexplore.domain.repository.CoreRepository
 import javax.inject.Singleton
 
 @Module
@@ -25,4 +27,8 @@ object DataModule {
         return AboutSpaceXRepositoryImpl(spaceXApi)
     }
 
+    @Provides @Singleton
+    fun provideCoreRepository(spaceXApi: SpaceXApi) : CoreRepository {
+        return CoreRepositoryImpl(spaceXApi)
+    }
 }

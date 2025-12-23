@@ -10,9 +10,11 @@ import dev.prateekthakur.spacexplore.presentation.screen.about.AboutSpaceXScreen
 import dev.prateekthakur.spacexplore.presentation.screen.about.AboutSpaceXScreenViewModel
 import dev.prateekthakur.spacexplore.presentation.screen.capsule.CapsulesScreen
 import dev.prateekthakur.spacexplore.presentation.screen.capsule.CapsulesScreenViewModel
+import dev.prateekthakur.spacexplore.presentation.screen.cores.CoresScreen
+import dev.prateekthakur.spacexplore.presentation.screen.cores.CoresScreenViewModel
 
 @Composable
-fun AppNavHost(startDestination: AppRoute = AppRoute.AboutSpaceX) {
+fun AppNavHost(startDestination: AppRoute = AppRoute.Cores) {
 
     val navHostController = rememberNavController()
 
@@ -28,5 +30,9 @@ fun AppNavHost(startDestination: AppRoute = AppRoute.AboutSpaceX) {
             AboutSpaceXScreen(aboutSpaceXScreenViewModel.info.collectAsState().value)
         }
 
+        composable<AppRoute.Cores> {
+            val coresScreenViewModel = hiltViewModel<CoresScreenViewModel>()
+            CoresScreen(coresScreenViewModel.state.collectAsState().value)
+        }
     }
 }
