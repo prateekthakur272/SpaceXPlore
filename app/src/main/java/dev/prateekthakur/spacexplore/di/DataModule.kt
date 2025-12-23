@@ -8,9 +8,11 @@ import dev.prateekthakur.spacexplore.data.api.SpaceXApi
 import dev.prateekthakur.spacexplore.data.repository.AboutSpaceXRepositoryImpl
 import dev.prateekthakur.spacexplore.data.repository.CapsuleRepositoryImpl
 import dev.prateekthakur.spacexplore.data.repository.CoreRepositoryImpl
+import dev.prateekthakur.spacexplore.data.repository.CrewRepositoryImpl
 import dev.prateekthakur.spacexplore.domain.repository.AboutSpaceXRepository
 import dev.prateekthakur.spacexplore.domain.repository.CapsuleRepository
 import dev.prateekthakur.spacexplore.domain.repository.CoreRepository
+import dev.prateekthakur.spacexplore.domain.repository.CrewRepository
 import javax.inject.Singleton
 
 @Module
@@ -30,5 +32,10 @@ object DataModule {
     @Provides @Singleton
     fun provideCoreRepository(spaceXApi: SpaceXApi) : CoreRepository {
         return CoreRepositoryImpl(spaceXApi)
+    }
+
+    @Provides @Singleton
+    fun provideCrewRepository(spaceXApi: SpaceXApi) : CrewRepository{
+        return CrewRepositoryImpl(spaceXApi)
     }
 }

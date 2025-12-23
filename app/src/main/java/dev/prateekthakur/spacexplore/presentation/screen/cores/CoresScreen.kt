@@ -40,6 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.prateekthakur.spacexplore.R
 import dev.prateekthakur.spacexplore.domain.models.Core
+import dev.prateekthakur.spacexplore.presentation.composables.SpaceXTopAppBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,23 +56,10 @@ fun CoresScreen(cores: List<Core>?) {
             Column {
                 TopAppBar(
                     title = {
-                        Column {
-                            Row(
-                                modifier = Modifier.padding(16.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Icon(
-                                    painter = painterResource(R.drawable.rocket_icon),
-                                    contentDescription = null
-                                )
-                                Spacer(modifier = Modifier.width(16.dp))
-                                Text(
-                                    "Rocket Cores",
-                                    style = MaterialTheme.typography.titleLarge,
-                                    fontWeight = FontWeight.W700
-                                )
-                            }
-
+                        SpaceXTopAppBar(
+                            title = "Rocket Cores",
+                            icon = R.drawable.rocket_icon
+                        ) {
                             statusOptions?.let { options ->
                                 FlowRow(
                                     verticalArrangement = Arrangement.spacedBy(8.dp),

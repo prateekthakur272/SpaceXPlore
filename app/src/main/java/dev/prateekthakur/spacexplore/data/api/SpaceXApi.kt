@@ -4,11 +4,15 @@ import dev.prateekthakur.spacexplore.data.request.QueryRequest
 import dev.prateekthakur.spacexplore.domain.models.AboutSpaceX
 import dev.prateekthakur.spacexplore.domain.models.Capsule
 import dev.prateekthakur.spacexplore.domain.models.Core
+import dev.prateekthakur.spacexplore.domain.models.Crew
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface SpaceXApi {
+
+    @GET("/v4/company")
+    suspend fun getCompanyInfo(): AboutSpaceX
 
     @GET("/v4/capsules")
     suspend fun getCapsules(): List<Capsule>
@@ -19,9 +23,6 @@ interface SpaceXApi {
     @POST("/v4/capsules/query")
     suspend fun getCapsules(@Body query: QueryRequest = QueryRequest()): List<Capsule>
 
-    @GET("/v4/company")
-    suspend fun getCompanyInfo(): AboutSpaceX
-
     @GET("/v4/cores")
     suspend fun getCores(): List<Core>
 
@@ -30,4 +31,13 @@ interface SpaceXApi {
 
     @POST("/v4/cores/query")
     suspend fun getCores(@Body query: QueryRequest = QueryRequest()): List<Core>
+
+    @GET("/v4/crew")
+    suspend fun getCrew(): List<Crew>
+
+    @GET("/v4/crew/{id}")
+    suspend fun getCrew(id: String): Crew
+
+    @GET("/v4/crew/query")
+    suspend fun getCrew(query: QueryRequest = QueryRequest()): List<Crew>
 }

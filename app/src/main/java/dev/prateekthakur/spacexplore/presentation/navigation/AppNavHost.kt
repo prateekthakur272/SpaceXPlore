@@ -12,9 +12,11 @@ import dev.prateekthakur.spacexplore.presentation.screen.capsule.CapsulesScreen
 import dev.prateekthakur.spacexplore.presentation.screen.capsule.CapsulesScreenViewModel
 import dev.prateekthakur.spacexplore.presentation.screen.cores.CoresScreen
 import dev.prateekthakur.spacexplore.presentation.screen.cores.CoresScreenViewModel
+import dev.prateekthakur.spacexplore.presentation.screen.crew.CrewScreen
+import dev.prateekthakur.spacexplore.presentation.screen.crew.CrewScreenViewModel
 
 @Composable
-fun AppNavHost(startDestination: AppRoute = AppRoute.Cores) {
+fun AppNavHost(startDestination: AppRoute = AppRoute.Crew) {
 
     val navHostController = rememberNavController()
 
@@ -33,6 +35,11 @@ fun AppNavHost(startDestination: AppRoute = AppRoute.Cores) {
         composable<AppRoute.Cores> {
             val coresScreenViewModel = hiltViewModel<CoresScreenViewModel>()
             CoresScreen(coresScreenViewModel.state.collectAsState().value)
+        }
+
+        composable<AppRoute.Crew> {
+            val crewScreenViewModel = hiltViewModel<CrewScreenViewModel>()
+            CrewScreen(crewScreenViewModel.state.collectAsState().value)
         }
     }
 }
