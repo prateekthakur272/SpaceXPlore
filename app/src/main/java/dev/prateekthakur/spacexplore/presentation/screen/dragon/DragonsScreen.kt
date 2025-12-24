@@ -2,6 +2,7 @@ package dev.prateekthakur.spacexplore.presentation.screen.dragon
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -69,7 +70,9 @@ fun DragonsScreen(dragons: List<Dragon>?) {
                         items(dragons) { dragon ->
                             DragonCard(
                                 dragon = dragon,
-                                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                                modifier = Modifier
+                                    .padding(horizontal = 16.dp, vertical = 8.dp)
+                                    .clickable(onClick = {})
                             )
                         }
                     }

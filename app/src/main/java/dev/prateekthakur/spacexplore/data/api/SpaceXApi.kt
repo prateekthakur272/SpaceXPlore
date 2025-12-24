@@ -9,6 +9,7 @@ import dev.prateekthakur.spacexplore.domain.models.Dragon
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface SpaceXApi {
 
@@ -19,7 +20,7 @@ interface SpaceXApi {
     suspend fun getCapsules(): List<Capsule>
 
     @GET("/v4/capsules/{id}")
-    suspend fun getCapsule(id: String): Capsule
+    suspend fun getCapsule(@Path("id") id: String): Capsule
 
     @POST("/v4/capsules/query")
     suspend fun getCapsules(@Body query: QueryRequest = QueryRequest()): List<Capsule>
@@ -28,7 +29,7 @@ interface SpaceXApi {
     suspend fun getCores(): List<Core>
 
     @GET("/v4/cores/{id}")
-    suspend fun getCore(id: String): Core
+    suspend fun getCore(@Path("id") id: String): Core
 
     @POST("/v4/cores/query")
     suspend fun getCores(@Body query: QueryRequest = QueryRequest()): List<Core>
@@ -37,7 +38,7 @@ interface SpaceXApi {
     suspend fun getCrew(): List<Crew>
 
     @GET("/v4/crew/{id}")
-    suspend fun getCrew(id: String): Crew
+    suspend fun getCrew(@Path("id") id: String): Crew
 
     @POST("/v4/crew/query")
     suspend fun getCrew(@Body query: QueryRequest = QueryRequest()): List<Crew>
@@ -46,7 +47,7 @@ interface SpaceXApi {
     suspend fun getDragons(): List<Dragon>
 
     @GET("/v4/dragons/{id}")
-    suspend fun getDragon(id: String): Dragon
+    suspend fun getDragon(@Path("id") id: String): Dragon
 
     @POST("/v4/dragons/query")
     suspend fun getDragons(@Body query: QueryRequest = QueryRequest()): List<Dragon>

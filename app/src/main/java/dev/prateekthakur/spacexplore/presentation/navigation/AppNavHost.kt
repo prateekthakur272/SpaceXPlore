@@ -6,6 +6,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import dev.prateekthakur.spacexplore.presentation.screen.about.AboutSpaceXScreen
 import dev.prateekthakur.spacexplore.presentation.screen.about.AboutSpaceXScreenViewModel
 import dev.prateekthakur.spacexplore.presentation.screen.capsule.CapsulesScreen
@@ -14,11 +15,13 @@ import dev.prateekthakur.spacexplore.presentation.screen.cores.CoresScreen
 import dev.prateekthakur.spacexplore.presentation.screen.cores.CoresScreenViewModel
 import dev.prateekthakur.spacexplore.presentation.screen.crew.CrewScreen
 import dev.prateekthakur.spacexplore.presentation.screen.crew.CrewScreenViewModel
+import dev.prateekthakur.spacexplore.presentation.screen.dragon.DragonDetailsScreen
+import dev.prateekthakur.spacexplore.presentation.screen.dragon.DragonDetailsScreenViewModel
 import dev.prateekthakur.spacexplore.presentation.screen.dragon.DragonsScreen
 import dev.prateekthakur.spacexplore.presentation.screen.dragon.DragonsScreenViewModel
 
 @Composable
-fun AppNavHost(startDestination: AppRoute = AppRoute.Dragons) {
+fun AppNavHost(startDestination: AppRoute = AppRoute.DragonDetails("5e9d058759b1ff74a7ad5f8f")) {
 
     val navHostController = rememberNavController()
 
@@ -47,6 +50,13 @@ fun AppNavHost(startDestination: AppRoute = AppRoute.Dragons) {
         composable<AppRoute.Dragons> {
             val dragonsScreenViewModel = hiltViewModel<DragonsScreenViewModel>()
             DragonsScreen(dragonsScreenViewModel.state.collectAsState().value)
+        }
+
+        composable<AppRoute.DragonDetails> {
+            val routeData = it.toRoute<AppRoute.DragonDetails>()
+            val dragonDetailsScreenViewModel = hiltViewModel<DragonDetailsScreenViewModel>()
+            dragonDetailsScreenViewModel.getDetails(routeData.id)
+            DragonDetailsScreen(dragonDetailsScreenViewModel.state.collectAsState().value)
         }
     }
 }
