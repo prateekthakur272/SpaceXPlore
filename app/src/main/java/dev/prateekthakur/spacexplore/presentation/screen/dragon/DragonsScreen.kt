@@ -38,6 +38,7 @@ import coil.compose.SubcomposeAsyncImageContent
 import dev.prateekthakur.spacexplore.R
 import dev.prateekthakur.spacexplore.domain.models.Dragon
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXCard
+import dev.prateekthakur.spacexplore.presentation.composables.SpaceXInfoChip
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXTopAppBar
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -118,7 +119,16 @@ fun DragonCard(dragon: Dragon, modifier: Modifier = Modifier) {
 
         Column(modifier = Modifier.padding(16.dp)) {
 
-            Text(dragon.name, style = MaterialTheme.typography.titleLarge)
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(dragon.name, style = MaterialTheme.typography.titleLarge)
+                if (dragon.active) {
+                    SpaceXInfoChip("Active")
+                }
+            }
             Spacer(modifier = Modifier.height(4.dp))
             Text(dragon.type, style = MaterialTheme.typography.labelLarge)
             Spacer(modifier = Modifier.height(8.dp))
@@ -130,9 +140,24 @@ fun DragonCard(dragon: Dragon, modifier: Modifier = Modifier) {
             )
             Spacer(modifier = Modifier.height(16.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                DragonCardInfoBlock(title = "Crew", value = "${dragon.crewCapacity}", icon = R.drawable.people_icon, modifier = Modifier.weight(1f))
-                DragonCardInfoBlock(title = "Mass", value = "${dragon.crewCapacity}", icon = R.drawable.weight_icon, modifier = Modifier.weight(1f))
-                DragonCardInfoBlock(title = "Height", value = "${dragon.crewCapacity}", icon = R.drawable.ruler_icon, modifier = Modifier.weight(1f))
+                DragonCardInfoBlock(
+                    title = "Crew",
+                    value = "${dragon.crewCapacity}",
+                    icon = R.drawable.people_icon,
+                    modifier = Modifier.weight(1f)
+                )
+                DragonCardInfoBlock(
+                    title = "Mass",
+                    value = "${dragon.crewCapacity}",
+                    icon = R.drawable.weight_icon,
+                    modifier = Modifier.weight(1f)
+                )
+                DragonCardInfoBlock(
+                    title = "Height",
+                    value = "${dragon.crewCapacity}",
+                    icon = R.drawable.ruler_icon,
+                    modifier = Modifier.weight(1f)
+                )
             }
         }
     }
