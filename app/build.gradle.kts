@@ -71,6 +71,7 @@ dependencies {
     implementation(libs.logging.interceptor)
 
     implementation(libs.hilt.android)
+    implementation(libs.androidx.browser)
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
