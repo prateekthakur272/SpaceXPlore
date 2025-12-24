@@ -5,6 +5,7 @@ import dev.prateekthakur.spacexplore.domain.models.AboutSpaceX
 import dev.prateekthakur.spacexplore.domain.models.Capsule
 import dev.prateekthakur.spacexplore.domain.models.Core
 import dev.prateekthakur.spacexplore.domain.models.Crew
+import dev.prateekthakur.spacexplore.domain.models.Dragon
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -38,6 +39,15 @@ interface SpaceXApi {
     @GET("/v4/crew/{id}")
     suspend fun getCrew(id: String): Crew
 
-    @GET("/v4/crew/query")
-    suspend fun getCrew(query: QueryRequest = QueryRequest()): List<Crew>
+    @POST("/v4/crew/query")
+    suspend fun getCrew(@Body query: QueryRequest = QueryRequest()): List<Crew>
+
+    @GET("/v4/dragons")
+    suspend fun getDragons(): List<Dragon>
+
+    @GET("/v4/dragons/{id}")
+    suspend fun getDragon(id: String): Dragon
+
+    @POST("/v4/dragons/query")
+    suspend fun getDragons(@Body query: QueryRequest = QueryRequest()): List<Dragon>
 }

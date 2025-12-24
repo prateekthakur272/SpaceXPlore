@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SpaceXTopAppBar(modifier: Modifier = Modifier, title: String, icon: Int, content: @Composable () -> Unit = {}) {
+fun SpaceXTopAppBar(title: String, icon: Int, content: @Composable () -> Unit = {}) {
     Column {
         Row(
             modifier = Modifier.padding(16.dp),
