@@ -1,9 +1,6 @@
 package dev.prateekthakur.spacexplore.presentation.screen.about
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -39,6 +36,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import dev.prateekthakur.spacexplore.R
 import dev.prateekthakur.spacexplore.domain.models.AboutSpaceX
+import dev.prateekthakur.spacexplore.utils.openExternalLink
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -407,10 +405,7 @@ fun AboutSpaceXScreen(info: AboutSpaceX?) {
 
                             ListItem(
                                 modifier = Modifier.clickable(onClick = {
-                                    openExternalLink(
-                                        context,
-                                        info.links.elonTwitter
-                                    )
+                                    openExternalLink(context, info.links.elonTwitter)
                                 }),
                                 headlineContent = {
                                     Text(
@@ -451,9 +446,4 @@ fun InfoCard(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
     ) {
         content()
     }
-}
-
-fun openExternalLink(context: Context, url: String) {
-    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-    context.startActivity(intent)
 }

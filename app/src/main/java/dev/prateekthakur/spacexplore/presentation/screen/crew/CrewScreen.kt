@@ -39,7 +39,7 @@ import dev.prateekthakur.spacexplore.domain.models.Crew
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXCard
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXInfoChip
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXTopAppBar
-import dev.prateekthakur.spacexplore.presentation.screen.about.openExternalLink
+import dev.prateekthakur.spacexplore.utils.openExternalLink
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
