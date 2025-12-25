@@ -39,7 +39,7 @@ import dev.prateekthakur.spacexplore.domain.models.Crew
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXCard
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXInfoChip
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXTopAppBar
-import dev.prateekthakur.spacexplore.utils.openExternalLink
+import dev.prateekthakur.spacexplore.utils.openBrowserCustomTab
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -144,7 +144,7 @@ fun CrewCard(crew: Crew, modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .clip(MaterialTheme.shapes.medium)
                     .background(MaterialTheme.colorScheme.surfaceContainer)
-                    .clickable(onClick = { openExternalLink(context, crew.wikipedia) })
+                    .clickable(onClick = { openBrowserCustomTab(context, crew.wikipedia) })
                     .padding(8.dp)
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {

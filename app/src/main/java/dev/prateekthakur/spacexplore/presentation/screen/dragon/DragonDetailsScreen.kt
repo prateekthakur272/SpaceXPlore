@@ -50,7 +50,7 @@ import dev.prateekthakur.spacexplore.presentation.composables.SpaceXCard
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXInfoCard
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXInfoChip
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXTopAppBar
-import dev.prateekthakur.spacexplore.utils.openExternalLink
+import dev.prateekthakur.spacexplore.utils.openBrowserCustomTab
 import kotlinx.coroutines.launch
 import java.util.Locale.getDefault
 
@@ -187,7 +187,7 @@ fun DragonDetailsScreen(dragon: Dragon?) {
                     }
 
                     Button(
-                        onClick = { openExternalLink(context, dragon.wikipedia) },
+                        onClick = { openBrowserCustomTab(context, dragon.wikipedia) },
                         shape = MaterialTheme.shapes.medium,
                         modifier = Modifier.fillMaxWidth().height(48.dp)
                     ) {

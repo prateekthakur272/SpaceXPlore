@@ -19,9 +19,11 @@ import dev.prateekthakur.spacexplore.presentation.screen.dragon.DragonDetailsScr
 import dev.prateekthakur.spacexplore.presentation.screen.dragon.DragonDetailsScreenViewModel
 import dev.prateekthakur.spacexplore.presentation.screen.dragon.DragonsScreen
 import dev.prateekthakur.spacexplore.presentation.screen.dragon.DragonsScreenViewModel
+import dev.prateekthakur.spacexplore.presentation.screen.history.EventHistoryScreen
+import dev.prateekthakur.spacexplore.presentation.screen.history.EventHistoryScreenViewModel
 
 @Composable
-fun AppNavHost(startDestination: AppRoute = AppRoute.DragonDetails("5e9d058759b1ff74a7ad5f8f")) {
+fun AppNavHost(startDestination: AppRoute = AppRoute.EventHistory) {
 
     val navHostController = rememberNavController()
 
@@ -57,6 +59,11 @@ fun AppNavHost(startDestination: AppRoute = AppRoute.DragonDetails("5e9d058759b1
             val dragonDetailsScreenViewModel = hiltViewModel<DragonDetailsScreenViewModel>()
             dragonDetailsScreenViewModel.getDetails(routeData.id)
             DragonDetailsScreen(dragonDetailsScreenViewModel.state.collectAsState().value)
+        }
+
+        composable<AppRoute.EventHistory> {
+            val eventHistoryScreenViewModel = hiltViewModel<EventHistoryScreenViewModel>()
+            EventHistoryScreen(eventHistoryScreenViewModel.state.collectAsState().value)
         }
     }
 }

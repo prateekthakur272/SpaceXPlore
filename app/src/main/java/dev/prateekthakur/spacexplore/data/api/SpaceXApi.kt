@@ -6,6 +6,7 @@ import dev.prateekthakur.spacexplore.domain.models.Capsule
 import dev.prateekthakur.spacexplore.domain.models.Core
 import dev.prateekthakur.spacexplore.domain.models.Crew
 import dev.prateekthakur.spacexplore.domain.models.Dragon
+import dev.prateekthakur.spacexplore.domain.models.EventHistory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -51,4 +52,13 @@ interface SpaceXApi {
 
     @POST("/v4/dragons/query")
     suspend fun getDragons(@Body query: QueryRequest = QueryRequest()): List<Dragon>
+
+    @GET("/v4/history")
+    suspend fun getEventHistory(): List<EventHistory>
+
+    @GET("/v4/history/{id}")
+    suspend fun getEventHistory(@Path("id") id: String): EventHistory
+
+    @POST("/v4/history/query")
+    suspend fun getEventHistory(query: QueryRequest = QueryRequest()): List<EventHistory>
 }

@@ -10,11 +10,13 @@ import dev.prateekthakur.spacexplore.data.repository.CapsuleRepositoryImpl
 import dev.prateekthakur.spacexplore.data.repository.CoreRepositoryImpl
 import dev.prateekthakur.spacexplore.data.repository.CrewRepositoryImpl
 import dev.prateekthakur.spacexplore.data.repository.DragonRepositoryImpl
+import dev.prateekthakur.spacexplore.data.repository.EventHistoryRepositoryImpl
 import dev.prateekthakur.spacexplore.domain.repository.AboutSpaceXRepository
 import dev.prateekthakur.spacexplore.domain.repository.CapsuleRepository
 import dev.prateekthakur.spacexplore.domain.repository.CoreRepository
 import dev.prateekthakur.spacexplore.domain.repository.CrewRepository
 import dev.prateekthakur.spacexplore.domain.repository.DragonRepository
+import dev.prateekthakur.spacexplore.domain.repository.EventHistoryRepository
 import javax.inject.Singleton
 
 @Module
@@ -44,5 +46,10 @@ object DataModule {
     @Provides @Singleton
     fun provideDragonRepository(spaceXApi: SpaceXApi) : DragonRepository {
         return DragonRepositoryImpl(spaceXApi)
+    }
+
+    @Provides @Singleton
+    fun provideEventHistoryRepository(spaceXApi: SpaceXApi) : EventHistoryRepository {
+        return EventHistoryRepositoryImpl(spaceXApi)
     }
 }

@@ -36,7 +36,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import dev.prateekthakur.spacexplore.R
 import dev.prateekthakur.spacexplore.domain.models.AboutSpaceX
-import dev.prateekthakur.spacexplore.utils.openExternalLink
+import dev.prateekthakur.spacexplore.utils.openBrowserCustomTab
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -327,7 +327,7 @@ fun AboutSpaceXScreen(info: AboutSpaceX?) {
 
                             ListItem(
                                 modifier = Modifier.clickable(onClick = {
-                                    openExternalLink(
+                                    openBrowserCustomTab(
                                         context,
                                         info.links.website
                                     )
@@ -353,7 +353,7 @@ fun AboutSpaceXScreen(info: AboutSpaceX?) {
 
                             ListItem(
                                 modifier = Modifier.clickable(onClick = {
-                                    openExternalLink(
+                                    openBrowserCustomTab(
                                         context,
                                         info.links.twitter
                                     )
@@ -379,7 +379,7 @@ fun AboutSpaceXScreen(info: AboutSpaceX?) {
 
                             ListItem(
                                 modifier = Modifier.clickable(onClick = {
-                                    openExternalLink(
+                                    openBrowserCustomTab(
                                         context,
                                         info.links.flickr
                                     )
@@ -405,7 +405,7 @@ fun AboutSpaceXScreen(info: AboutSpaceX?) {
 
                             ListItem(
                                 modifier = Modifier.clickable(onClick = {
-                                    openExternalLink(context, info.links.elonTwitter)
+                                    openBrowserCustomTab(context, info.links.elonTwitter)
                                 }),
                                 headlineContent = {
                                     Text(
