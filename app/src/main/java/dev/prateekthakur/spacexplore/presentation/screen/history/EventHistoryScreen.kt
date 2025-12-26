@@ -1,6 +1,5 @@
 package dev.prateekthakur.spacexplore.presentation.screen.history
 
-import android.text.format.DateFormat
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -41,9 +40,10 @@ import dev.prateekthakur.spacexplore.R
 import dev.prateekthakur.spacexplore.domain.models.EventHistory
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXInfoCard
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXTopAppBar
+import dev.prateekthakur.spacexplore.utils.formatDate
+import dev.prateekthakur.spacexplore.utils.formatTime
 import dev.prateekthakur.spacexplore.utils.openBrowserCustomTab
 import kotlin.time.ExperimentalTime
-import kotlin.time.Instant
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -66,8 +66,8 @@ fun EventHistoryScreen(events: List<EventHistory>?) {
                             .padding(horizontal = 16.dp)
                             .fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             FooterInfo(title = "Total Events", value = "${events.size}", modifier = Modifier.weight(1f))
-                            FooterInfo(title = "Last Event", value = "${DateFormat.format("MMM dd, yyyy", events.last().eventDateUnix)}", modifier = Modifier.weight(1f))
-                            FooterInfo(title = "Next Event", value = "${DateFormat.format("MMM dd, yyyy", events.first().eventDateUnix)}", modifier = Modifier.weight(1f))
+                            FooterInfo(title = "First Event", value = events.last().eventDateUnixMillis.formatDate(), modifier = Modifier.weight(1f))
+                            FooterInfo(title = "Latest Event", value = events.first().eventDateUnixMillis.formatDate(), modifier = Modifier.weight(1f))
                         }
                     }
                 }
@@ -97,7 +97,6 @@ fun EventHistoryScreen(events: List<EventHistory>?) {
 fun EventHistoryCard(eventHistory: EventHistory, modifier: Modifier = Modifier) {
 
     val context = LocalContext.current
-    val unixDate = Instant.fromEpochSeconds(eventHistory.eventDateUnix).toEpochMilliseconds()
 
     Row(
         modifier = Modifier
@@ -129,12 +128,11 @@ fun EventHistoryCard(eventHistory: EventHistory, modifier: Modifier = Modifier) 
         Spacer(Modifier.width(8.dp))
         SpaceXInfoCard(title = {
             Column {
-                Text(
-                    "${DateFormat.format("MMM dd, yyyy", unixDate)}",
+                Text(eventHistory.eventDateUnixMillis.formatDate(),
                     style = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                    "${DateFormat.format("hh:mm a zz", unixDate)}",
+                    eventHistory.eventDateUnixMillis.formatTime(),
                     style = MaterialTheme.typography.labelMedium
                 )
             }

@@ -10,7 +10,9 @@ data class EventHistory(
     @SerialName("event_date_unix") val eventDateUnix: Long,
     @SerialName("details") val details: String,
     @SerialName("links") val links: HistoryLinks
-)
+){
+    val eventDateUnixMillis get() = eventDateUnix * 1000
+}
 
 @Serializable
 data class HistoryLinks(
