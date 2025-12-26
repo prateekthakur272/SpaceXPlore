@@ -9,7 +9,7 @@ import javax.inject.Inject
 class EventHistoryRepositoryImpl @Inject constructor(private val spaceXApi: SpaceXApi) : EventHistoryRepository {
 
     override suspend fun getAll(): List<EventHistory> {
-        return spaceXApi.getEventHistory().sortedByDescending { it.eventDateUnix }
+        return spaceXApi.getEventHistory()
     }
 
     override suspend fun getSingle(id: String): EventHistory {

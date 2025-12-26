@@ -18,7 +18,7 @@ class EventHistoryScreenViewModel @Inject constructor(private val eventHistoryRe
 
     init {
         viewModelScope.launch {
-            _state.value = eventHistoryRepository.getAll()
+            _state.value = eventHistoryRepository.getAll().sortedByDescending { it.eventDateUnix }
         }
     }
 }
