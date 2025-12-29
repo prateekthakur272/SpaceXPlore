@@ -31,13 +31,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.prateekthakur.spacexplore.R
 import dev.prateekthakur.spacexplore.domain.models.EventHistory
+import dev.prateekthakur.spacexplore.presentation.composables.SpaceXFooterInfo
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXInfoCard
 import dev.prateekthakur.spacexplore.presentation.composables.SpaceXTopAppBar
 import dev.prateekthakur.spacexplore.utils.formatDate
@@ -65,9 +65,9 @@ fun EventHistoryScreen(events: List<EventHistory>?) {
                         Row(modifier = Modifier
                             .padding(horizontal = 16.dp)
                             .fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            FooterInfo(title = "Total Events", value = "${events.size}", modifier = Modifier.weight(1f))
-                            FooterInfo(title = "First Event", value = events.last().eventDateUnixMillis.formatDate(), modifier = Modifier.weight(1f))
-                            FooterInfo(title = "Latest Event", value = events.first().eventDateUnixMillis.formatDate(), modifier = Modifier.weight(1f))
+                            SpaceXFooterInfo(title = "Total Events", value = "${events.size}", modifier = Modifier.weight(1f))
+                            SpaceXFooterInfo(title = "First Event", value = events.last().eventDateUnixMillis.formatDate(), modifier = Modifier.weight(1f))
+                            SpaceXFooterInfo(title = "Latest Event", value = events.first().eventDateUnixMillis.formatDate(), modifier = Modifier.weight(1f))
                         }
                     }
                 }
@@ -90,7 +90,6 @@ fun EventHistoryScreen(events: List<EventHistory>?) {
         }
     }
 }
-
 
 @OptIn(ExperimentalTime::class)
 @Composable
@@ -154,16 +153,6 @@ fun EventHistoryCard(eventHistory: EventHistory, modifier: Modifier = Modifier) 
                     Button(onClick = { openBrowserCustomTab(context, it) }) { Text("Read Article") }
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun FooterInfo(title: String, value: String, modifier: Modifier = Modifier) {
-    Box(modifier = modifier, contentAlignment = Alignment.TopCenter) {
-        Column {
-            Text(title, style = MaterialTheme.typography.bodyMedium, color = Color.Gray)
-            Text(value, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.W700)
         }
     }
 }

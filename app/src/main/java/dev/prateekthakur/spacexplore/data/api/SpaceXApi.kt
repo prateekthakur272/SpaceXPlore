@@ -7,6 +7,7 @@ import dev.prateekthakur.spacexplore.domain.models.Core
 import dev.prateekthakur.spacexplore.domain.models.Crew
 import dev.prateekthakur.spacexplore.domain.models.Dragon
 import dev.prateekthakur.spacexplore.domain.models.EventHistory
+import dev.prateekthakur.spacexplore.domain.models.LandingPad
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -61,4 +62,13 @@ interface SpaceXApi {
 
     @POST("/v4/history/query")
     suspend fun getEventHistory(query: QueryRequest = QueryRequest()): List<EventHistory>
+
+    @GET("/v4/landpads")
+    suspend fun getLandPads(): List<LandingPad>
+
+    @GET("/v4/landpads/{id}")
+    suspend fun getLandPad(@Path("id") id: String): LandingPad
+
+    @POST("/v4/landpads/query")
+    suspend fun getLandPads(@Body query: QueryRequest = QueryRequest()): List<LandingPad>
 }

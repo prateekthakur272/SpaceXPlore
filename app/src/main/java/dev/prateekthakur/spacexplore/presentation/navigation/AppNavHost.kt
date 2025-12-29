@@ -21,9 +21,11 @@ import dev.prateekthakur.spacexplore.presentation.screen.dragon.DragonsScreen
 import dev.prateekthakur.spacexplore.presentation.screen.dragon.DragonsScreenViewModel
 import dev.prateekthakur.spacexplore.presentation.screen.history.EventHistoryScreen
 import dev.prateekthakur.spacexplore.presentation.screen.history.EventHistoryScreenViewModel
+import dev.prateekthakur.spacexplore.presentation.screen.landingPads.LandingPadsScreen
+import dev.prateekthakur.spacexplore.presentation.screen.landingPads.LandingPadsScreenViewModel
 
 @Composable
-fun AppNavHost(startDestination: AppRoute = AppRoute.EventHistory) {
+fun AppNavHost(startDestination: AppRoute = AppRoute.LandingPads) {
 
     val navHostController = rememberNavController()
 
@@ -64,6 +66,11 @@ fun AppNavHost(startDestination: AppRoute = AppRoute.EventHistory) {
         composable<AppRoute.EventHistory> {
             val eventHistoryScreenViewModel = hiltViewModel<EventHistoryScreenViewModel>()
             EventHistoryScreen(eventHistoryScreenViewModel.state.collectAsState().value)
+        }
+
+        composable<AppRoute.LandingPads> {
+            val landingPadsScreenViewModel = hiltViewModel<LandingPadsScreenViewModel>()
+            LandingPadsScreen(landingPadsScreenViewModel.state.collectAsState().value)
         }
     }
 }
