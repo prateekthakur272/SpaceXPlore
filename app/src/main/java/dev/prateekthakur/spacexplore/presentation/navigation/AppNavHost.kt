@@ -21,11 +21,13 @@ import dev.prateekthakur.spacexplore.presentation.screen.dragon.DragonsScreen
 import dev.prateekthakur.spacexplore.presentation.screen.dragon.DragonsScreenViewModel
 import dev.prateekthakur.spacexplore.presentation.screen.history.EventHistoryScreen
 import dev.prateekthakur.spacexplore.presentation.screen.history.EventHistoryScreenViewModel
+import dev.prateekthakur.spacexplore.presentation.screen.landingPads.LandingPadDetailScreen
+import dev.prateekthakur.spacexplore.presentation.screen.landingPads.LandingPadDetailScreenViewModel
 import dev.prateekthakur.spacexplore.presentation.screen.landingPads.LandingPadsScreen
 import dev.prateekthakur.spacexplore.presentation.screen.landingPads.LandingPadsScreenViewModel
 
 @Composable
-fun AppNavHost(startDestination: AppRoute = AppRoute.LandingPads) {
+fun AppNavHost(startDestination: AppRoute = AppRoute.LandingPadDetail("5e9e3032383ecb267a34e7c7")) {
 
     val navHostController = rememberNavController()
 
@@ -71,6 +73,13 @@ fun AppNavHost(startDestination: AppRoute = AppRoute.LandingPads) {
         composable<AppRoute.LandingPads> {
             val landingPadsScreenViewModel = hiltViewModel<LandingPadsScreenViewModel>()
             LandingPadsScreen(landingPadsScreenViewModel.state.collectAsState().value)
+        }
+
+        composable<AppRoute.LandingPadDetail> {
+            val routeData = it.toRoute<AppRoute.LandingPadDetail>()
+            val landingPadDetailsScreenViewModel = hiltViewModel<LandingPadDetailScreenViewModel>()
+            landingPadDetailsScreenViewModel.loadDetails(routeData.id)
+            LandingPadDetailScreen(landingPadDetailsScreenViewModel.state.collectAsState().value)
         }
     }
 }

@@ -1,6 +1,7 @@
 package dev.prateekthakur.spacexplore.presentation.screen.landingPads
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -67,7 +68,9 @@ fun LandingPadsScreen(landingPads: List<LandingPad>?) {
                 landingPads.isEmpty() -> Text("No Landing Pads Found")
                 else -> LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(landingPads) {
-                        LandingPadCard(it, modifier = Modifier.padding(16.dp))
+                        LandingPadCard(it, modifier = Modifier.padding(16.dp)){
+
+                        }
                     }
                 }
             }
@@ -76,8 +79,8 @@ fun LandingPadsScreen(landingPads: List<LandingPad>?) {
 }
 
 @Composable
-fun LandingPadCard(landingPad: LandingPad, modifier: Modifier = Modifier) {
-    SpaceXCard(modifier = modifier) {
+fun LandingPadCard(landingPad: LandingPad,modifier: Modifier = Modifier, onClick: () -> Unit) {
+    SpaceXCard(modifier = modifier.clickable(onClick = onClick)) {
         Column {
             AsyncImage(
                 model = landingPad.images.large.first(),
@@ -105,7 +108,7 @@ fun LandingPadCard(landingPad: LandingPad, modifier: Modifier = Modifier) {
                     Spacer(modifier = Modifier.width(8.dp))
                     SpaceXInfoChip(
                         landingPad.type,
-                        chipColor = getChitColorForType(landingPad.type)
+                        chipColor = getChipColorForType(landingPad.type)
                     )
                 }
 
@@ -188,7 +191,7 @@ fun LandingPadCard(landingPad: LandingPad, modifier: Modifier = Modifier) {
     }
 }
 
-fun getChitColorForType(type: String): Color {
+fun getChipColorForType(type: String): Color {
     return when (type.lowercase(getDefault())) {
         "rtls" -> Color(0xFF2196F3)
         "asds" -> Color(0xFF8BC34A)

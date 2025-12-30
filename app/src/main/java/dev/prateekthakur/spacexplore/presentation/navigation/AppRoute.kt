@@ -12,4 +12,5 @@ sealed class AppRoute {
     @Serializable data class DragonDetails(val id: String) : AppRoute()
     @Serializable data object EventHistory : AppRoute()
     @Serializable data object LandingPads : AppRoute()
+    @Serializable data class LandingPadDetail(val id: String) : AppRoute()
 }
