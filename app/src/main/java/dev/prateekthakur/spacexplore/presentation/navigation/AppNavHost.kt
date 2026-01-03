@@ -25,9 +25,13 @@ import dev.prateekthakur.spacexplore.presentation.screen.landingPads.LandingPadD
 import dev.prateekthakur.spacexplore.presentation.screen.landingPads.LandingPadDetailScreenViewModel
 import dev.prateekthakur.spacexplore.presentation.screen.landingPads.LandingPadsScreen
 import dev.prateekthakur.spacexplore.presentation.screen.landingPads.LandingPadsScreenViewModel
+import dev.prateekthakur.spacexplore.presentation.screen.launches.LaunchDetailsScreen
+import dev.prateekthakur.spacexplore.presentation.screen.launches.LaunchDetailsScreenViewModel
+import dev.prateekthakur.spacexplore.presentation.screen.launches.LaunchesScreen
+import dev.prateekthakur.spacexplore.presentation.screen.launches.LaunchesScreenViewModel
 
 @Composable
-fun AppNavHost(startDestination: AppRoute = AppRoute.LandingPadDetail("5e9e3032383ecb267a34e7c7")) {
+fun AppNavHost(startDestination: AppRoute = AppRoute.LaunchDetails("5eb87cdaffd86e000604b32b")) {
 
     val navHostController = rememberNavController()
 
@@ -80,6 +84,18 @@ fun AppNavHost(startDestination: AppRoute = AppRoute.LandingPadDetail("5e9e30323
             val landingPadDetailsScreenViewModel = hiltViewModel<LandingPadDetailScreenViewModel>()
             landingPadDetailsScreenViewModel.loadDetails(routeData.id)
             LandingPadDetailScreen(landingPadDetailsScreenViewModel.state.collectAsState().value)
+        }
+
+        composable<AppRoute.Launches> {
+            val launchesScreenViewModel = hiltViewModel<LaunchesScreenViewModel>()
+            LaunchesScreen(launchesScreenViewModel.state.collectAsState().value)
+        }
+
+        composable<AppRoute.LaunchDetails> {
+            val routeData = it.toRoute<AppRoute.LaunchDetails>()
+            val launchDetailsScreenViewModel = hiltViewModel<LaunchDetailsScreenViewModel>()
+            launchDetailsScreenViewModel.loadData(routeData.id)
+            LaunchDetailsScreen(launchDetailsScreenViewModel.state.collectAsState().value)
         }
     }
 }

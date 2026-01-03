@@ -13,4 +13,6 @@ sealed class AppRoute {
     @Serializable data object EventHistory : AppRoute()
     @Serializable data object LandingPads : AppRoute()
     @Serializable data class LandingPadDetail(val id: String) : AppRoute()
+    @Serializable data object Launches : AppRoute()
+    @Serializable data class LaunchDetails(val id: String) : AppRoute()
 }

@@ -12,6 +12,7 @@ import dev.prateekthakur.spacexplore.data.repository.CrewRepositoryImpl
 import dev.prateekthakur.spacexplore.data.repository.DragonRepositoryImpl
 import dev.prateekthakur.spacexplore.data.repository.EventHistoryRepositoryImpl
 import dev.prateekthakur.spacexplore.data.repository.LandingPadsRepositoryImpl
+import dev.prateekthakur.spacexplore.data.repository.LaunchesRepositoryImpl
 import dev.prateekthakur.spacexplore.domain.repository.AboutSpaceXRepository
 import dev.prateekthakur.spacexplore.domain.repository.CapsuleRepository
 import dev.prateekthakur.spacexplore.domain.repository.CoreRepository
@@ -19,6 +20,7 @@ import dev.prateekthakur.spacexplore.domain.repository.CrewRepository
 import dev.prateekthakur.spacexplore.domain.repository.DragonRepository
 import dev.prateekthakur.spacexplore.domain.repository.EventHistoryRepository
 import dev.prateekthakur.spacexplore.domain.repository.LandingPadsRepository
+import dev.prateekthakur.spacexplore.domain.repository.LaunchesRepository
 import javax.inject.Singleton
 
 @Module
@@ -58,5 +60,10 @@ object DataModule {
     @Provides @Singleton
     fun provideLandingPadsRepository(spaceXApi: SpaceXApi) : LandingPadsRepository {
         return LandingPadsRepositoryImpl(spaceXApi)
+    }
+
+    @Provides @Singleton
+    fun provideLaunchesRepository(spaceXApi: SpaceXApi) : LaunchesRepository {
+        return LaunchesRepositoryImpl(spaceXApi)
     }
 }
