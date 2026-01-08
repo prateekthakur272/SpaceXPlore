@@ -43,7 +43,7 @@ import java.util.Locale.getDefault
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LandingPadsScreen(landingPads: List<LandingPad>?) {
+fun LandingPadsScreen(landingPads: List<LandingPad>?, onLandingPadClick: (LandingPad) -> Unit) {
     Scaffold(
         containerColor = MaterialTheme.colorScheme.surfaceContainer,
         topBar = {
@@ -69,7 +69,7 @@ fun LandingPadsScreen(landingPads: List<LandingPad>?) {
                 else -> LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(landingPads) {
                         LandingPadCard(it, modifier = Modifier.padding(16.dp)){
-
+                            onLandingPadClick(it)
                         }
                     }
                 }

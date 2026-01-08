@@ -77,8 +77,6 @@ fun DragonDetailsScreen(dragon: Dragon?) {
                                 SpaceXInfoChip("Active")
                             }
                         }
-                    }, navigationIcon = {
-                        SpaceXBackButton { }
                     }
                 )
                 HorizontalDivider()

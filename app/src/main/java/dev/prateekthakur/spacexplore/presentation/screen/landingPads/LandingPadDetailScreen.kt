@@ -53,8 +53,6 @@ fun LandingPadDetailScreen(landingPad: LandingPad?) {
         Column {
             TopAppBar(title = {
                 SpaceXTopAppBar(title = landingPad?.name ?: "", icon = R.drawable.location_pin_icon)
-            }, navigationIcon = {
-                SpaceXBackButton {}
             }, actions = {
                 landingPad?.let { SpaceXInfoChip(text = it.status) }
             })

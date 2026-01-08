@@ -44,7 +44,7 @@ import dev.prateekthakur.spacexplore.utils.formatTime
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LaunchesScreen(launches: List<Launch>?) {
+fun LaunchesScreen(launches: List<Launch>?, onLaunchClick: (Launch) -> Unit) {
     Scaffold(containerColor = MaterialTheme.colorScheme.surfaceContainer, topBar = {
         Column {
             TopAppBar(title = {
@@ -75,7 +75,9 @@ fun LaunchesScreen(launches: List<Launch>?) {
                 launches.isEmpty() -> Text(text = "No Launches Found")
                 else -> LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(launches) {
-                        LaunchCard(it, modifier = Modifier.padding(8.dp))
+                        LaunchCard(it, modifier = Modifier.padding(8.dp)){
+                            onLaunchClick(it)
+                        }
                     }
                 }
             }
@@ -85,7 +87,7 @@ fun LaunchesScreen(launches: List<Launch>?) {
 
 
 @Composable
-fun LaunchCard(launch: Launch, modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
+fun LaunchCard(launch: Launch, modifier: Modifier = Modifier, onClick: () -> Unit) {
     SpaceXCard(modifier = modifier
         .fillMaxWidth()
         .clickable(onClick = onClick)) {

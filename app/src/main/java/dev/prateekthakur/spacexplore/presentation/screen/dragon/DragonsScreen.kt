@@ -44,7 +44,7 @@ import dev.prateekthakur.spacexplore.presentation.composables.SpaceXTopAppBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DragonsScreen(dragons: List<Dragon>?) {
+fun DragonsScreen(dragons: List<Dragon>?, onDragonClick: (Dragon) -> Unit) {
     Scaffold(
         containerColor = MaterialTheme.colorScheme.surfaceContainer,
         topBar = {
@@ -72,7 +72,7 @@ fun DragonsScreen(dragons: List<Dragon>?) {
                                 dragon = dragon,
                                 modifier = Modifier
                                     .padding(horizontal = 16.dp, vertical = 8.dp)
-                                    .clickable(onClick = {})
+                                    .clickable(onClick = { onDragonClick(dragon) })
                             )
                         }
                     }
