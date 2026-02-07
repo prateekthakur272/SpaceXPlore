@@ -6,6 +6,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navDeepLink
 import androidx.navigation.toRoute
 import dev.prateekthakur.spacexplore.presentation.screen.about.AboutSpaceXScreen
 import dev.prateekthakur.spacexplore.presentation.screen.about.AboutSpaceXScreenViewModel
@@ -69,7 +70,9 @@ fun AppNavHost(startDestination: AppRoute = AppRoute.Home) {
             }
         }
 
-        composable<AppRoute.DragonDetails> {
+        composable<AppRoute.DragonDetails>(
+            deepLinks = listOf(navDeepLink { uriPattern = "spacexplore://dragon/{id}" })
+        ) {
             val routeData = it.toRoute<AppRoute.DragonDetails>()
             val dragonDetailsScreenViewModel = hiltViewModel<DragonDetailsScreenViewModel>()
             dragonDetailsScreenViewModel.getDetails(routeData.id)
@@ -88,21 +91,25 @@ fun AppNavHost(startDestination: AppRoute = AppRoute.Home) {
             }
         }
 
-        composable<AppRoute.LandingPadDetail> {
+        composable<AppRoute.LandingPadDetail>(
+            deepLinks = listOf(navDeepLink { uriPattern = "spacexplore://landing-pad/{id}" })
+        ) {
             val routeData = it.toRoute<AppRoute.LandingPadDetail>()
             val landingPadDetailsScreenViewModel = hiltViewModel<LandingPadDetailScreenViewModel>()
             landingPadDetailsScreenViewModel.loadDetails(routeData.id)
             LandingPadDetailScreen(landingPadDetailsScreenViewModel.state.collectAsState().value)
         }
 
-        composable<AppRoute.Launches> {
+        composable<AppRoute.Launches>{
             val launchesScreenViewModel = hiltViewModel<LaunchesScreenViewModel>()
             LaunchesScreen(launchesScreenViewModel.state.collectAsState().value){
                 navHostController.navigate(AppRoute.LaunchDetails(it.id))
             }
         }
 
-        composable<AppRoute.LaunchDetails> {
+        composable<AppRoute.LaunchDetails>(
+            deepLinks = listOf(navDeepLink { uriPattern = "spacexplore://launch/{id}" })
+        ) {
             val routeData = it.toRoute<AppRoute.LaunchDetails>()
             val launchDetailsScreenViewModel = hiltViewModel<LaunchDetailsScreenViewModel>()
             launchDetailsScreenViewModel.loadData(routeData.id)
